@@ -43,7 +43,7 @@
                     <td>
                         @if (item.CompleteOn.HasValue)
                         {
-                            item.CompleteOn.Value.ToString("yyyy-MM-dd");
+                            <text>@item.CompleteOn.Value.ToString("MM/dd/yyyy")</text>
                         }
                         else
                         {
