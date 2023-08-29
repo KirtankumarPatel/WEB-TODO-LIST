@@ -1,0 +1,36 @@
+﻿@model AspCore_MVC_Todo.Models.TodoViewModal
+@{
+    ViewData["Title"] = "Create";
+}
+<h4>Create To-Do</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Task" class="control-label"> To do</label>
+                <input asp-for="Task" class="form-control" placeholder="Enter your to do" />
+                <span asp-validation-for="Task" class="text-danger"></span>
+            </div>          
+            <br />
+            <div class="d-flex">
+                <div>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-chevron-left"></i> Back
+                    </a>
+                </div>
+                <div class="ms-auto">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* For validaion message *@
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 namespace AspCore_MVC_Todo.Models
 {
+
+    // Enitiy framework context class
     public class TodoDbContext : DbContext
     {
         public TodoDbContext(DbContextOptions<TodoDbContext> options)
@@ -11,6 +13,7 @@ namespace AspCore_MVC_Todo.Models
         {
         }
 
+        // Table dataset config.
         public DbSet<Todo> Todo { get; set; }
     }
 }

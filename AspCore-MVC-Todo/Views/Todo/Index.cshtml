@@ -1,0 +1,80 @@
+﻿@model AspCore_MVC_Todo.Models.Todos
+
+@{
+    ViewData["Title"] = "Index";
+}
+<form asp-controller="Todo" asp-action="Index" method="get">
+    <p class="pe-5">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-lg"></i> Create New
+        </a>
+    </p>
+</form>
+
+<table class="table table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th>Todo</th>
+            <th>Completed</th>
+            <th>Completed Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.TodoList != null && Model.TodoList.Count > 0)
+        {
+            foreach (var item in Model.TodoList)
+            {
+                <tr>
+                    <td width="50%">
+                        @Html.DisplayFor(modelItem => item.Task)
+                    </td>
+                    <td>
+                        @if (item.IsCompleted)
+                        {
+                            <text>Completed</text>
+                        }
+                        else
+                        {
+                            <text>Incomplete</text>
+                        }
+                    </td>
+                    <td>
+                        @if (item.CompleteOn.HasValue)
+                        {
+                            item.CompleteOn.Value.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </td>
+                    <td>
+                        @if (item.IsCompleted)
+                        {
+                            <button class="btn btn-success" title="Completed">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </button>
+                        }
+                        else
+                        {
+                            <a asp-action="Details" title="Mark To Complete" asp-route-id="@item.Id"
+                               class="btn btn-primary">
+                                <i class="bi bi-check-lg"></i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">
+                    No Record, Please create your todos.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
