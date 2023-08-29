@@ -1,2 +1,3 @@
 # WEB-TODO-LIST
-Student Name - Kirtankumar Pravinbhai Patel                                        Student id -A00255697 .
+Student Name - Kirtankumar Pravinbhai Patel                                        
+Student ID -A00255697
