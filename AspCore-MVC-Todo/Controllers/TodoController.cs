@@ -57,25 +57,35 @@ namespace AspCore_MVC_Todo.Controllers
             return View(new TodoViewModal());
         }
 
-        // GET: ToDo/MarkToComplete/1
-        public async Task<IActionResult> MarkToComplete(int? id)
+        // ToDo/MarkToComplete/1
+        public async Task<IActionResult> MarkToComplete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var toDoList = await _context.Todo
+            var todo = await _context.Todo
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDoList == null)
+            if (todo == null)
             {
                 return NotFound();
             }
 
-            toDoList.CompleteOn = DateTime.Now;
-            toDoList.IsCompleted = true;
+            todo.CompleteOn = DateTime.Now;
+            todo.IsCompleted = true;
+            _context.SaveChanges();
             TempData["Success"] = "To Do completed successfully";
             return RedirectToAction(nameof(Index));
-        }       
+        }
+
+        // ToDo/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var todo = await _context.Todo.FindAsync(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+            _context.Todo.Remove(todo);
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "To Do deleted successfully";
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

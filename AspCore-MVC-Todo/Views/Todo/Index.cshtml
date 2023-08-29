@@ -59,11 +59,16 @@
                         }
                         else
                         {
-                            <a asp-action="Details" title="Mark To Complete" asp-route-id="@item.Id"
+                            <a asp-action="MarkToComplete" title="Mark To Complete" asp-route-id="@item.Id"
                                class="btn btn-primary">
                                 <i class="bi bi-check-lg"></i>
                             </a>
                         }
+
+                        <a asp-action="Delete" asp-route-id="@item.Id"
+                           class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
                     </td>
                 </tr>
             }
