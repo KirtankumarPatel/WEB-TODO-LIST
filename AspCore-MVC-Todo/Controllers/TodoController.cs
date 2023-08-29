@@ -17,6 +17,7 @@ namespace AspCore_MVC_Todo.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            // get to do list from database
             var todos = _context.Todo.ToList();
 
             if (todos == null)
@@ -27,6 +28,7 @@ namespace AspCore_MVC_Todo.Controllers
             {
                 todoList.Add(new TodoViewModal() { Id = todo.Id, CompleteOn = todo.CompleteOn, IsCompleted = todo.IsCompleted, Task = todo.Task });
             }
+            //return list to view
             return View(new Todos() { TodoList = todoList });
         }
 
@@ -49,9 +51,11 @@ namespace AspCore_MVC_Todo.Controllers
                     Task = viewModal.Task,
                 };
 
+                // Add To do 
                 _context.Add(todo);
                 _context.SaveChanges();
                 TempData["Success"] = "To Do created successfully";
+                // Redirect to index 
                 return RedirectToAction(nameof(Index));
             }
             return View(new TodoViewModal());
@@ -67,6 +71,7 @@ namespace AspCore_MVC_Todo.Controllers
                 return NotFound();
             }
 
+            // Mark to completed and update CompleteOn date 
             todo.CompleteOn = DateTime.Now;
             todo.IsCompleted = true;
             _context.SaveChanges();
@@ -82,6 +87,7 @@ namespace AspCore_MVC_Todo.Controllers
             {
                 return NotFound();
             }
+            // remove to do
             _context.Todo.Remove(todo);
             await _context.SaveChangesAsync();
             TempData["Success"] = "To Do deleted successfully";
