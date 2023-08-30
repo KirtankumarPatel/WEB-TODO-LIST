@@ -4,7 +4,7 @@ Student ID -A00255697
 
 ## How to run ## 
 * Clone the source code 
-* Goto the appsettings.json file change the connection string after the open package manager console and hit below comman 
+* Navigate to the appsettings.json file and modify the connection string. Once done, access the Package Manager Console and execute the following command:
     Add-Migration <migration-test> (Add-Migration initialMigration)
     Update-Database
 * That's it. Now click on Run button.
