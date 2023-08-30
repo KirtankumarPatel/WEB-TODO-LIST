@@ -3,7 +3,7 @@ Student Name - Kirtankumar Pravinbhai Patel
 Student ID -A00255697
 
 ## How to run ## 
-* Clode the source code 
+* Clone the source code 
 * Goto the appsettings.json file change the connection string after the open package manager console and hit below comman 
     Add-Migration <migration-test> (Add-Migration initialMigration)
     Update-Database
